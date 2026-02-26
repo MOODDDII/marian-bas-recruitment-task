@@ -1,16 +1,161 @@
-# React + Vite
+📊 Zadanie rekrutacyjne — Data Visualization (Frontend)
+=======================================================
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+📌 Kontekst
+-----------
 
-Currently, two official plugins are available:
+Dane w pliku data.json pochodzą z platformy e-commerce i zawierają informacje o zamówieniach, m.in.:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+*   czas złożenia zamówienia,
+    
+*   lokalizację (kraj, miasto, współrzędne),
+    
+*   kategorie produktów,
+    
+*   ilości i ceny,
+    
+*   dodatkowe metadane (metoda płatności, typ klienta, urządzenie, czas dostawy).
+    
 
-## React Compiler
+Celem zadania było zrozumienie struktury danych, wybranie najistotniejszych informacji oraz przedstawienie ich w czytelnej i sensownej formie wizualnej.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+🎯 Podejście do analizy danych
+==============================
 
-## Expanding the ESLint configuration
+Podczas analizy danych skupiłem się na perspektywie biznesowej.Zamiast prezentować wszystkie dostępne informacje, wybrałem te, które w mojej ocenie dają największą wartość analityczną.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Wybrałem trzy główne obszary:
+
+1️⃣ Revenue over time (Przychód w czasie)
+-----------------------------------------
+
+### Dlaczego te dane są kluczowe?
+
+Trend przychodów w czasie jest jednym z najważniejszych wskaźników w e-commerce.Pozwala zrozumieć:
+
+*   dynamikę sprzedaży,
+    
+*   ewentualne wzrosty i spadki,
+    
+*   ogólną kondycję biznesu w czasie.
+    
+
+### Agregacja danych
+
+*   Przychód został obliczony jako:quantity × unitPrice
+    
+*   Dane zostały pogrupowane po dacie (YYYY-MM-DD).
+    
+*   Posortowane chronologicznie.
+    
+
+### Dlaczego wykres liniowy?
+
+Wykres liniowy najlepiej pokazuje zmiany wartości w czasie oraz pozwala łatwo zauważyć trendy i odchylenia.
+
+2️⃣ Revenue by country (Przychód według kraju)
+----------------------------------------------
+
+### Dlaczego te dane są kluczowe?
+
+Geograficzna dystrybucja przychodów pozwala:
+
+*   zidentyfikować najmocniejsze rynki,
+    
+*   wskazać potencjalne obszary do rozwoju,
+    
+*   porównać efektywność sprzedaży między krajami.
+    
+
+### Agregacja danych
+
+*   Dane zostały pogrupowane według pola country.
+    
+*   Obliczono sumę przychodów dla każdego kraju.
+    
+*   Posortowano malejąco, aby wyróżnić najbardziej dochodowe rynki.
+    
+
+### Dlaczego wykres słupkowy?
+
+Wykres słupkowy umożliwia czytelne porównanie wartości pomiędzy kategoriami dyskretnymi (krajami).
+
+3️⃣ Orders by device (Zamówienia według urządzenia)
+---------------------------------------------------
+
+### Dlaczego te dane są kluczowe?
+
+Podział zamówień według urządzenia daje wgląd w:
+
+*   zachowanie użytkowników (mobile vs desktop),
+    
+*   potencjalne potrzeby optymalizacji UX,
+    
+*   kontekst marketingowy.
+    
+
+### Agregacja danych
+
+*   Dane zostały pogrupowane według pola device.
+    
+*   Zliczono liczbę zamówień dla każdego typu urządzenia.
+    
+
+### Dlaczego wykres kołowy?
+
+Wykres kołowy pozwala w przejrzysty sposób przedstawić udział procentowy poszczególnych segmentów w całości.
+
+🧠 Dlaczego właśnie te trzy wizualizacje?
+=========================================
+
+Celem było wybranie trzech wizualizacji, które:
+
+*   pokazują trend (czas),
+    
+*   pokazują porównanie (kraje),
+    
+*   pokazują strukturę (urządzenia).
+    
+
+Razem tworzą one spójny i czytelny obraz sprzedaży z trzech różnych perspektyw analitycznych.
+
+🛠️ Technologia
+===============
+
+*   React
+    
+*   Recharts (biblioteka do wizualizacji danych)
+    
+*   JavaScript (agregacja i przetwarzanie danych)
+    
+*   CSS Grid (layout)
+    
+
+Technologia nie była kluczowym kryterium, dlatego wybrałem rozwiązanie, które pozwala szybko i czytelnie zaprezentować dane.
+
+▶️ Uruchomienie projektu
+========================
+
+Wymagania
+---------
+
+*   Node.js (zalecana wersja 18+)
+    
+*   npm
+    
+
+Instalacja
+----------
+
+npm install
+
+Uruchomienie projektu
+---------------------
+
+npm run dev
+
+Następnie otworzyć w przeglądarce:
+
+http://localhost:5173
+
+Projekt powinien uruchomić się lokalnie bez dodatkowej konfiguracji.
